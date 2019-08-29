@@ -4,21 +4,26 @@ using namespace std;
 void crc(string gP, string dataW, int k) {
 	string rem, quo, holder, newREM;
 	string zC = "00000000000000000";
+	char zer[20] = "01";
 	string zero = "0", one = "1";
 	int nZ = 15;
 	for(int i = 0; i<gP.length()-1; i++) {
-			holder = (gP[i+1]==dataW[i+1]?zero:one);
+			holder = ((gP[i+1]==dataW[i+1])?zero:one);
 			rem.append(holder);
 	}
 	for(int j = 0; j<k; j++){
-		if(rem[0] == "1"){
+		char c = rem[0];
+		newREM = rem;
+		if(c == zer[0]){
+			rem = "";
 			for(int i = 0; i<gP.length()-1; i++) {
-				holder = (gP[i+1]==rem[i+1]?zero:one);
+				holder = ((gP[i+1]==newREM[i+1])?zero:one);
 				rem.append(holder);
 		}}
 		else{
+			rem = "";
 			for(int i = 0; i<gP.length()-1; i++) {
-				holder = (zero==dataW[i+1]?zero:one);
+				holder = ((zC[i+1]==newREM[i+1])?zero:one);
 				rem.append(holder);
 		}}
 	}
